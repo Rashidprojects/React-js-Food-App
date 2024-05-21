@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Pagination from './Pagination';
 import Popup from './Popup';
+import Card from './Card';
 
 function FilteredDishes({ allMenus, 
                          allCategory, 
@@ -25,7 +26,7 @@ function FilteredDishes({ allMenus,
 
   
 
-  // Set Beef Category to firt Category
+  // Set Beef Category to firt Category and handle beef category api
 
   useEffect(() => {
     if(singleCategory.length > 0 ){
@@ -44,16 +45,7 @@ function FilteredDishes({ allMenus,
   function firstItem() {
     let initialCategory = singleCategory.map((item) => {
       return (
-        <li key={item.idMeal}>
-          <div className="item-container">
-            <div className="image-container">
-              <img src={item.strMealThumb} alt={item.strMeal} />
-            </div>
-            <div className="text-container">
-              <h2>{item.strMeal}</h2>
-            </div>
-          </div>
-        </li>
+        <Card menuItem = {item} />
       );
     }) 
     setFirstDisplayCategory(initialCategory)
@@ -133,12 +125,13 @@ function FilteredDishes({ allMenus,
           <div className="special-dish">
             <div className="special-dishes-container bottom"> 
               <ul>{showFirstItems}</ul>
+
               
               {
-                filteredCategory.length !== 0 || activeDishes !== 0 ? <ul>{showItems}</ul> :
+                filteredCategory.length !== 0 || firstDisplayCategory.length !== 0 ? <ul>{showItems}</ul> : 
                   <div className='empty-array'>
                     <h2>Sorry,Try another dish category</h2>
-                  </div>
+                  </div> 
               }
             </div>
           </div>

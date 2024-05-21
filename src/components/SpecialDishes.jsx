@@ -1,4 +1,6 @@
-import cardDish from "./cardDish"
+import React from "react"
+import Card from "./Card"
+
 
 function SpecialDishes(props) {
 
@@ -6,13 +8,14 @@ function SpecialDishes(props) {
         let specialMenuCount = 6
         if (specialMenuCount > index){
             return(
-                <cardDish menuItem = {menuItem}/>
+                <Card menuItem = {menuItem} />
         )
         }else{
             return null
         }
     })
     return(
+        
         <div className="dish-container">
             <div className="container">
                 <div className="dish-text">
