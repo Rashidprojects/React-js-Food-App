@@ -51,7 +51,9 @@ function Menu() {
         <div>
            <Header/>
            <Hero/>
-           {!loading ? <SpecialDishes specialMenu ={menu} /> : <h1>Loading...</h1> }
+           {!loading ? <SpecialDishes specialMenu ={menu} /> : <div className="loading-container">
+            <h1>Loading...</h1>
+           </div> }
            {!loading ? <FilteredDishes 
             allCategory = {category} 
             allMenus={menu}

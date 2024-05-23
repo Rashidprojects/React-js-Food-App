@@ -7,10 +7,13 @@ import Popup from "./Popup"
 function SpecialDishes(props) {
 
     const [showPopUp,setShowPopUp] = useState(false)
+    const [currentDish,setCurrentDish] = useState('')
+
 
     //PopUp Display and Remove Condition
-  function popupHandler() {
+  function popupHandler(currentDishId) {
     showPopUp === true ? setShowPopUp(false) : setShowPopUp(true)
+    setCurrentDish(currentDishId)
   }
 
 
@@ -27,7 +30,7 @@ function SpecialDishes(props) {
     return(
         
         <div className="dish-container">
-            { showPopUp && <Popup closePopUp = {popupHandler} />}
+            { showPopUp && <Popup closePopUp = {popupHandler} currentDishId = {currentDish}/>}
             <div className="container">
                 <div className="dish-text">
                     <div>
