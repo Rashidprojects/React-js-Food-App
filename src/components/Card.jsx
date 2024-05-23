@@ -1,14 +1,25 @@
 import React from 'react'
 
 function Card(props) {
+
+    function scrollToTop(){
+        window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    }
+
+    function handleClick(){
+        props.showPopUp(props.menuItem.idMeal);
+        scrollToTop();
+    }
+
+
   return (
     <div>
-        {/* <li>
-            <img src={props.menuItem.strMealThumb} alt="" />
-            <h2>{props.menuItem.strMeal}</h2>
-        </li> */}
-
-        <li key={props.menuItem.idMeal}>
+       
+        <li onClick={handleClick}
+            key={props.menuItem.idMeal}>
           <div className="item-container">
             <div className="image-container">
               <img src={props.menuItem.strMealThumb} alt={props.menuItem.strMeal} />

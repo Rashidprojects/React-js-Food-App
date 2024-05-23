@@ -45,17 +45,21 @@ function FilteredDishes({ allMenus,
   function firstItem() {
     let initialCategory = singleCategory.map((item) => {
       return (
-        <Card menuItem = {item} />
+        <Card menuItem = {item} showPopUp = {popupHandler} />
       );
     }) 
     setFirstDisplayCategory(initialCategory)
   }
 
   
+  const [currentDish,setCurrentDish] = useState('')
 
-  function popupHandler() {
-    setShowPopUp(true)
+  //PopUp Display and Remove Condition
+  function popupHandler(currentDish) {
+    showPopUp === true ? setShowPopUp(false) : setShowPopUp(true)
+    setCurrentDish(currentDish)
   }
+
 
   function categoryButtonHandler(categoryName) {     
       
@@ -106,7 +110,9 @@ function FilteredDishes({ allMenus,
 
   return (
     <div className="filtered-dish-section">
-      { showPopUp && <Popup />}
+      { showPopUp && <Popup closePopUp = {popupHandler} 
+                            currentDish = {currentDish}
+                            />}
       <div className="filtered-dish-container">
   
         <div className="dish-text">

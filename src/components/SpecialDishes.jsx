@@ -1,14 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 import Card from "./Card"
+import Popup from "./Popup"
+
 
 
 function SpecialDishes(props) {
+
+    const [showPopUp,setShowPopUp] = useState(false)
+
+    //PopUp Display and Remove Condition
+  function popupHandler() {
+    showPopUp === true ? setShowPopUp(false) : setShowPopUp(true)
+  }
+
 
     let specialMenus = props.specialMenu.map((menuItem,index)=>{
         let specialMenuCount = 6
         if (specialMenuCount > index){
             return(
-                <Card menuItem = {menuItem} />
+                <Card menuItem = {menuItem} showPopUp = {popupHandler}/>
         )
         }else{
             return null
@@ -17,6 +27,7 @@ function SpecialDishes(props) {
     return(
         
         <div className="dish-container">
+            { showPopUp && <Popup closePopUp = {popupHandler} />}
             <div className="container">
                 <div className="dish-text">
                     <div>

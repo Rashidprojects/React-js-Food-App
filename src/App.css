@@ -301,11 +301,123 @@
   height: 600px;
   opacity: 1;
   display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 9px;
+  position: relative;
+  padding-top: 44px;
 }
 .popup-h1{
   color: #fff;
   font-size: 35px;
 }
+.popup-close{
+  background: red;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+.popup-close:hover{
+  background: rgb(244, 105, 105);
+  transform: scale(1.1);
+}
+.popup-close svg{
+  font-size: 25px;
+}
+.popup-container .image-container{
+  padding: 10px;
+}
+.popup-container .image-container img{
+  width: 392px;
+  border-radius: 6px;
+}
+.popup-name{
+  display: flex;
+  justify-content: space-around;
+  margin: 8px 0px;
+}
+.popup-name .name{
+  width: 200px;
+}
+.popup-name h2{
+  font-size: 20px;
+}
+.btn-purchase{
+  display: flex;
+  justify-content: center;
+}
+.btn-purchase button{
+  width: 140px;
+  height: 30px;
+  border-radius: 3px;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px 7px;
+  background-color: #857a7a;
+  color: #fff;
+  cursor: pointer;
+}
+.btn-purchase .buy-btn{
+  background: #ff8500;
+}
+.category-popup{
+  position: absolute;
+    background: #fff;
+    opacity: 1.1;
+    top: 40px;
+    padding: 3px 20px;
+    border-radius: 20px;
+    background: #fe9018;
+    color: #fff;
+    text-align: center;
+}
+.popup-description{
+  padding: 20px;
+}
+.popup-description h3 {
+  font-size: 20px;
+}
+.popup-description ul{
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0px;
+  margin-bottom: 20px;
+}
+.popup-description ul li{
+  background-color: #fe9018;
+  padding: 4px 7px;
+  margin: 4px 3px;
+  border-radius: 13px;
+  font-weight: 500;
+}
+.popup-description p{
+  height: 134px;
+  overflow: hidden;
+  margin: 6px 0;
+}
+.popup-description .toggleExpand{
+  color: #fe9018;
+  cursor: pointer;
+  font-weight: 500;
+}
+.popup-description .toggleExpand:hover{
+  color: #fba64b;
+}
+.popup-description .expanded{
+  height: 150px;
+  overflow-y: scroll;
+  cursor: pointer;
+}
+/* .popup-description .expanded::-webkit-scrollbar {
+  display: none;
+} */
