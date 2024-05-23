@@ -55,9 +55,9 @@ function FilteredDishes({ allMenus,
   const [currentDish,setCurrentDish] = useState('')
 
   //PopUp Display and Remove Condition
-  function popupHandler(currentDish) {
+  function popupHandler(currentDishId) {
     showPopUp === true ? setShowPopUp(false) : setShowPopUp(true)
-    setCurrentDish(currentDish)
+    setCurrentDish(currentDishId)
   }
 
 
@@ -74,16 +74,7 @@ function FilteredDishes({ allMenus,
       // Map the filtered dishes to JSX elements
       const filteredDishesAre = filteredDishes.map((item) => {
         return (
-          <li key={item.idMeal} onClick={() => popupHandler()}>
-          <div className="item-container">
-            <div className="image-container">
-              <img src={item.strMealThumb} alt={item.strMeal} />
-            </div>
-            <div className="text-container">
-              <h2>{item.strMeal}</h2>
-            </div>
-          </div>
-        </li>
+          <Card menuItem = {item} showPopUp = {popupHandler} />
         );
       });
   
@@ -111,7 +102,7 @@ function FilteredDishes({ allMenus,
   return (
     <div className="filtered-dish-section">
       { showPopUp && <Popup closePopUp = {popupHandler} 
-                            currentDish = {currentDish}
+                            currentDishId = {currentDish}
                             />}
       <div className="filtered-dish-container">
   

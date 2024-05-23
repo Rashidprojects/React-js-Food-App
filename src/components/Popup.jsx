@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoClose} from "react-icons/io5";
 
-function Popup({ closePopUp, currentDish}) {
+function Popup({ closePopUp, currentDishId}) {
   const [detailedDish, setDetailedDish] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -11,21 +11,25 @@ function Popup({ closePopUp, currentDish}) {
 
   // List items by Category 
   async function getDetailedDish() {
-    const API_URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${currentDish}`;
+    const API_URL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${currentDishId}`;
     let response = await fetch(API_URL);
     let singleDishDetails = await response.json();
     setDetailedDish(singleDishDetails.meals[0]); // Assume there's only one meal returned
   }
    console.log(detailedDish);
   useEffect(() => {
-    if (currentDish) {
+    if (currentDishId) {
       getDetailedDish();
     }
-  }, [currentDish]);
+  }, [currentDishId]);
 
   if (!detailedDish) {
     return <div>Loading...</div>;
   }
+
+  
+  
+  
 
   return (
     <div className='popup-section'>
@@ -51,6 +55,7 @@ function Popup({ closePopUp, currentDish}) {
         <div>
             <h3>Ingredients</h3>
             <ul>
+              
               <li>{detailedDish.strIngredient1}</li>
               <li>{detailedDish.strIngredient2}</li>
               <li>{detailedDish.strIngredient3}</li>
