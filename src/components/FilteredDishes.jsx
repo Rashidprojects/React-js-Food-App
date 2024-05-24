@@ -4,14 +4,12 @@ import Popup from './Popup';
 import Card from './Card';
 import { AllMenuContext } from './AllMenuContext';
 
-function FilteredDishes({
-                         allCategory, 
-                         singleCategory
-                          }) {
+function FilteredDishes() {
   // useContext()
   const allMenus = useContext(AllMenuContext)
 
   // UseStates
+  let [loading,setLoading] = useState(true)
   const [filteredCategory, setFilteredCategory] = useState([]);
   const [selectedCategory,setSelectedCategory] = useState()
   const [activeDishes,setActiveDishes] = useState("Beef")
@@ -19,6 +17,8 @@ function FilteredDishes({
   const [currentPage,setCurrentPage] = useState(1)
   const [itemsPerPage,SetItemsPerPage] = useState(6)
   const [showPopUp,setShowPopUp] = useState(false)
+  const [category,setCategory] = useState([])
+  const [singleCategory,setSingleCategory] = useState([])
 
   let endingDishindex = currentPage * itemsPerPage
   let startingDishIndex = endingDishindex - itemsPerPage
@@ -29,6 +29,31 @@ function FilteredDishes({
   let showFirstItems = firstDisplayCategory.slice(startingDishIndex,endingDishindex)
 
   
+
+    // List Categories only
+    async function getAllCategories() {
+        const API_URL = "https://www.themealdb.com/api/json/v1/1/categories.php"
+        let response = await fetch(API_URL)
+        let categoryData = await response.json()
+        setCategory(categoryData.categories)
+        setLoading(false)
+    }
+
+    // List items by Category 
+    async function getSingleCategory() {
+        const API_URL = "https://www.themealdb.com/api/json/v1/1/filter.php?c=Beef"
+        let response = await fetch(API_URL)
+        let singleCategory = await response.json()
+        setSingleCategory(singleCategory.meals)
+        setLoading(false)
+    }
+
+
+    useEffect( () => {
+       getAllCategories()
+       getSingleCategory()
+  },[])
+
 
   // Set Beef Category to firt Category and handle beef category api
 
@@ -89,7 +114,7 @@ function FilteredDishes({
   }
   
 
-  const allCategories = allCategory.map((item) => (
+  const allCategories = category.map((item) => (
     <li key={item.strCategory}>
       <div className="item-block">
         <button className= { activeDishes === item.strCategory ? "active" : ""}
@@ -104,10 +129,14 @@ function FilteredDishes({
   ));
 
   return (
+    
     <div className="filtered-dish-section">
+      
       { showPopUp && <Popup closePopUp = {popupHandler} 
                             currentDishId = {currentDish}
                             />}
+
+            
       <div className="filtered-dish-container">
   
         <div className="dish-text">
@@ -142,8 +171,9 @@ function FilteredDishes({
       <Pagination 
         dishItemsCount = {activeDishes !== "Beef" ? filteredCategory : firstDisplayCategory }
         setCurrentPage = {setCurrentPage}
-      ></Pagination>
-    </div>
+      ></Pagination> 
+    </div> 
+    
 
   );
   
