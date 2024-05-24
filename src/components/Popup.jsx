@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { IoClose} from "react-icons/io5";
 
-function Popup({ closePopUp, currentDishId}) {
+function Popup({ closePopUp, currentDishId,addToCartHandler}) {
   const [detailedDish, setDetailedDish] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false)
 
@@ -46,7 +46,9 @@ function Popup({ closePopUp, currentDishId}) {
             <h2>$40.00</h2>
           </div>
           <div className="btn-purchase">
-            <button>Add to Cart</button>
+            <button onClick={ () => addToCartHandler(
+              detailedDish.strMealThumb, detailedDish.strMeal
+            )}>Add to Cart</button>
             <button className='buy-btn'>Buy Now</button>
           </div>
            

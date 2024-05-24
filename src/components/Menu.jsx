@@ -15,7 +15,7 @@ function Menu() {
            <AllMenus>
                 <SpecialDishes />      
                 <FilteredDishes /> 
-            </AllMenus>
+           </AllMenus>
         </div>
     )
 }

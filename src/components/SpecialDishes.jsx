@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react"
 import Card from "./Card"
 import Popup from "./Popup"
 import { AllMenuContext } from "./AllMenuContext"
+import AddtoCart from "./AddtoCart"
 
 
 
@@ -9,6 +10,7 @@ function SpecialDishes(props) {
 
     const [showPopUp,setShowPopUp] = useState(false)
     const [currentDish,setCurrentDish] = useState('')
+    const [addCartItems,setAddCartItems] = useState([])
 
 
     //PopUp Display and Remove Condition
@@ -30,10 +32,24 @@ function SpecialDishes(props) {
             return null
         }
     })
+
+    function addToCartHandler(itemImage,itemTitle){
+        setAddCartItems(
+            [
+              ...addCartItems,
+            {
+                "img" : itemImage,
+                "title" : itemTitle
+            }]
+        )
+    }
     return(
         
         <div className="dish-container">
-            { showPopUp && <Popup closePopUp = {popupHandler} currentDishId = {currentDish}/>}
+            <AddtoCart cartItems = {addCartItems} />
+            { showPopUp && <Popup closePopUp = {popupHandler} currentDishId = {currentDish} 
+                addToCartHandler = {addToCartHandler}
+            />}
             <div className="container">
                 <div className="dish-text">
                     <div>
