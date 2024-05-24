@@ -1,6 +1,7 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import Card from "./Card"
 import Popup from "./Popup"
+import { AllMenuContext } from "./AllMenuContext"
 
 
 
@@ -16,8 +17,10 @@ function SpecialDishes(props) {
     setCurrentDish(currentDishId)
   }
 
+  //useContext
+  const allMenus = useContext(AllMenuContext)
 
-    let specialMenus = props.specialMenu.map((menuItem,index)=>{
+    let specialMenus = allMenus.map((menuItem,index)=>{
         let specialMenuCount = 6
         if (specialMenuCount > index){
             return(

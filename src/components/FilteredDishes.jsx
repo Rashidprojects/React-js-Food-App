@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Pagination from './Pagination';
 import Popup from './Popup';
 import Card from './Card';
+import { AllMenuContext } from './AllMenuContext';
 
-function FilteredDishes({ allMenus, 
+function FilteredDishes({
                          allCategory, 
                          singleCategory
                           }) {
+  // useContext()
+  const allMenus = useContext(AllMenuContext)
 
+  // UseStates
   const [filteredCategory, setFilteredCategory] = useState([]);
   const [selectedCategory,setSelectedCategory] = useState()
   const [activeDishes,setActiveDishes] = useState("Beef")
