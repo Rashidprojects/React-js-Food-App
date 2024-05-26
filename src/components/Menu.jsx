@@ -7,6 +7,7 @@ import Header from "./Header"
 import { AllMenus } from "./AllMenuContext"
 import { BrowserRouter,Route, Routes } from "react-router-dom"
 import Contact from "./Contact"
+import Category from "./Category"
 
 function Menu() {
     
@@ -28,6 +29,7 @@ function Menu() {
                        
                 
                 <Route path="contact" element={<Contact />} />
+                <Route path="category" element={<Category /> } />
                     
             </Routes>
         </div>
