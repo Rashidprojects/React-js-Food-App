@@ -23,9 +23,11 @@ export const AllMenus = (props) => {
 
   return (
     <AllMenuContext.Provider value={menu}>
-       {!loading ? props.children : <div className="loading-container">
-                    <h1>Loading...</h1>
-                </div> }
+       {!loading ? props.children : 
+        <div className="loading-container">
+          <h1>Loading...</h1>
+        </div> 
+       }
     </AllMenuContext.Provider>
   )
 }

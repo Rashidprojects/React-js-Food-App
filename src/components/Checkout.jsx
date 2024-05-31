@@ -1,13 +1,12 @@
 import React, { useContext } from 'react'
 import { StateContext } from '../context/AppProvider'
 
-const AddtoCart = () => {
-
+const Checkout = () => {
     const cartPackage = useContext(StateContext)
 
     let cartItem = cartPackage.cartItems.map((item) => {
         return (
-            <div className='addto-cart'>
+            <div >
                 <img src={item.img} alt="" />
                 <div>
                     <h3>{item.title}</h3>
@@ -16,15 +15,12 @@ const AddtoCart = () => {
             </div>
         )
     })
-
   return (
-    <div className='addto-cart-container'>
-      <h3>Cart Items</h3>
+    <div>
+      <h1>This is Checkout</h1>
       {cartItem}
-
-      
     </div>
   )
 }
 
-export default AddtoCart
+export default Checkout

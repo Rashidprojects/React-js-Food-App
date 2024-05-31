@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { IoClose} from "react-icons/io5";
+import { DispatchContext } from '../context/AppProvider';
 
 function Popup({ closePopUp, currentDishId,addToCartHandler}) {
   const [detailedDish, setDetailedDish] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false)
+
+  const dispatch = useContext(DispatchContext)
 
   function toggleExpand(){
     setIsExpanded(!isExpanded)
@@ -45,10 +48,22 @@ function Popup({ closePopUp, currentDishId,addToCartHandler}) {
             <h2 className='name'>{detailedDish.strMeal}</h2>
             <h2>$40.00</h2>
           </div>
+
           <div className="btn-purchase">
-            <button onClick={ () => addToCartHandler(
+            {/* <button onClick={ () => addToCartHandler(
               detailedDish.strMealThumb, detailedDish.strMeal
-            )}>Add to Cart</button>
+            )}>Add to Cart</button> */}
+
+            <button onClick={() => {
+              dispatch({
+                type:'add_to_cart',
+                payload:{
+                  img: detailedDish.strMealThumb,
+                  title: detailedDish.strMeal
+                }
+              })
+            }}>Add to Cart</button>
+
             <button className='buy-btn'>Buy Now</button>
           </div>
            
