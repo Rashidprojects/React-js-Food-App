@@ -217,6 +217,13 @@
   overflow: hidden; 
 }
 
+.image-container{
+  box-shadow: inset 6px -12px 32px -10px rgba(0, 0, 0, 0.5);
+  padding-bottom: 26px;
+  border-radius: 7px;
+  width: 250px;
+}
+
 .image-container img {
   width: 100%;
   height: auto;
@@ -226,7 +233,6 @@
   position: absolute;
   bottom: 3px;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5);
   white-space: nowrap;
   overflow: hidden;
   text-align: center;
@@ -240,7 +246,7 @@
 .text-container h2 {
   margin: 0;
   padding: 5px;
-  color: #fff; /* Optional: text color for better readability */
+  color: #000;
   display: inline-block;
 }
 

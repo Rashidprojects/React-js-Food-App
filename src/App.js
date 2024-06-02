@@ -1,11 +1,13 @@
-import Menu from "./components/Menu"
 import './App.css'
+import Home from './pages/Home'
+import SignupPage from './pages/SignupPage'
 
 function App () {
 
   return (
     <div>
-      <Menu/>
+      <Home />
+      <SignupPage />
     </div>
   )
 }
