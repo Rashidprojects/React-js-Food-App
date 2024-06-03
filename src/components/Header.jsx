@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { FirebaseContext } from '../context/FirebaseContext'
+import { onAuthStateChanged } from 'firebase/auth'
 
 function Header() {
+  const [username,setUsername] = useState('')
+  const {auth} = useContext(FirebaseContext)
+
+  useEffect(()=> {
+    const unsubscribe = onAuthStateChanged(auth,(user) => {
+      if(user) {
+        setUsername(user.displayName)
+      } else {
+        setUsername('sign in')
+      }
+
+      return () =>unsubscribe();
+
+    },[auth])
+  })
   return (
     <div className='header-section'>
       <nav>
@@ -15,7 +32,7 @@ function Header() {
                 <li><Link to="contact">Contact</Link></li>
                 <li>
                   <div>
-                    <p>Hello, sign in</p>
+                    <p>Hello, {username}</p>
                     <h4>Account</h4>
                   </div>
                 </li>

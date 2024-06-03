@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import { FirebaseContextProvider } from './context/FirebaseContext';
 import { auth } from './config/firebase';
-// import { BrowserRouter } from "react-router-dom"
 
 
 

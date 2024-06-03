@@ -7,7 +7,9 @@ export const useFirebase =  () => {
 }
 
 export const FirebaseContextProvider = ({auth,children}) => {
-    <FirebaseContext.Provider value={{auth}}>
-        {children}
-    </FirebaseContext.Provider>
+    return(
+        <FirebaseContext.Provider value={{auth}}>
+            {children}
+        </FirebaseContext.Provider>
+    )
 }

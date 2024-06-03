@@ -1,14 +1,16 @@
+import { BrowserRouter as Router } from 'react-router-dom'
 import './App.css'
-import Home from './pages/Home'
-import SignupPage from './pages/SignupPage'
+import Header from './components/Header'
+import AppRoutes from './routes/AppRoutes'
 
 function App () {
 
   return (
-    <div>
-      <Home />
-      <SignupPage />
-    </div>
+    <Router> 
+      <Header />
+      <AppRoutes />
+    </Router>
+    
   )
 }
 

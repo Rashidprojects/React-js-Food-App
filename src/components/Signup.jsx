@@ -23,7 +23,7 @@ const Signup = () => {
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder='Enter username' onChange={(e) => SetUsername(e.target.value) }/>
         <input type="email" placeholder='Enter email' onChange={(e) => SetEmail(e.target.value) }/>
-        <input type="text" placeholder='Enter username' onChange={(e) => SetPassword(e.target.value) }/>
+        <input type="password" placeholder='Enter password' onChange={(e) => SetPassword(e.target.value) }/>
         <button type='submit'>Submit</button>
       </form>
     </div>
