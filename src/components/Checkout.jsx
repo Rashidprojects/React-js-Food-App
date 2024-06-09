@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
-import { StateContext } from '../context/AppProvider'
+import React from 'react'
+import { useCart } from '../context/AppProvider'
 
 const Checkout = () => {
-    const cartPackage = useContext(StateContext)
 
-    let cartItem = cartPackage.cartItems.map((item) => {
+  const { state } = useCart()
+  console.log("Checkout page state : ",state);
+    let cartItem = state.cartItems.map((item) => {
         return (
             <div >
                 <img src={item.img} alt="" />

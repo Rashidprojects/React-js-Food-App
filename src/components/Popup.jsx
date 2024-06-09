@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoClose} from "react-icons/io5";
-import { DispatchContext } from '../context/AppProvider';
+import { useCart } from '../context/AppProvider';
 
 function Popup({ closePopUp, currentDishId,addToCartHandler}) {
   const [detailedDish, setDetailedDish] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false)
 
-  const dispatch = useContext(DispatchContext)
-
+  const { dispatch } = useCart()
+  
   function toggleExpand(){
     setIsExpanded(!isExpanded)
   }
@@ -29,9 +29,6 @@ function Popup({ closePopUp, currentDishId,addToCartHandler}) {
   if (!detailedDish) {
     return <div>Loading...</div>;
   }
-
-  
-  
   
 
   return (
@@ -58,6 +55,7 @@ function Popup({ closePopUp, currentDishId,addToCartHandler}) {
               dispatch({
                 type:'add_to_cart',
                 payload:{
+                  id : currentDishId,
                   img: detailedDish.strMealThumb,
                   title: detailedDish.strMeal
                 }

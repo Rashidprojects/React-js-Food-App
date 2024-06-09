@@ -25,7 +25,7 @@ function Header() {
         <div className="logo">
             <h2>Logo</h2>
         </div>
-        <div>
+        <div className='nav-items'>
             <ul>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="checkout">Checkout</Link></li>
@@ -35,6 +35,11 @@ function Header() {
                     <p>Hello, {username}</p>
                     <h4>Account</h4>
                   </div>
+
+                    <ul>
+                      <li>Hello</li>
+                      <li>Sample</li>
+                    </ul>
                 </li>
             </ul>
         </div>

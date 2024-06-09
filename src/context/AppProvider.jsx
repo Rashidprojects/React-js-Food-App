@@ -1,7 +1,6 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useContext, useReducer } from 'react'
 
-const DispatchContext = createContext()
-const StateContext = createContext()
+const CartContext = createContext()
 
 const AppProvider = ({children}) => {
 
@@ -12,9 +11,23 @@ const AppProvider = ({children}) => {
     const reducer = (state,action) => {
         switch(action.type){
             case 'add_to_cart':
+                const itemIndex = state.cartItems.findIndex(item => item.id === action.payload.id)
+                if(itemIndex > -1){
+                    const newItems = state.cartItems.map(item => 
+                        item.id === action.payload.id ? { ...item, quantity: item.quantity +1 } : item
+                    )
+                    return { ...state, cartItems : newItems }
+                }
                 return {
                     ...state,
-                    cartItems: [...state.cartItems,action.payload]
+                    cartItems: [...state.cartItems, {...action.payload, quantity : 1} ]
+                }
+            case 'update_quantity':
+                return {
+                    ...state,
+                    cartItems : state.cartItems.map(item => 
+                        item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
+                    )
                 }
             default:
                 return state
@@ -26,12 +39,12 @@ const AppProvider = ({children}) => {
 
 
   return (
-    <DispatchContext.Provider value={dispatch}>
-        <StateContext.Provider value={state}>
-            {children}
-        </StateContext.Provider>
-    </DispatchContext.Provider>
+    <CartContext.Provider value={{state,dispatch}}>
+        {children}
+    </CartContext.Provider>
   )
 }
 
-export {AppProvider,DispatchContext,StateContext}
+export { AppProvider }
+
+export const useCart = () => useContext(CartContext)

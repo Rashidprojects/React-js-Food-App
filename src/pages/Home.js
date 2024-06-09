@@ -3,11 +3,9 @@ import Hero from '../components/Hero'
 import SpecialDishes from "../components/SpecialDishes"
 import FilteredDishes from "../components/FilteredDishes"
 import { AllMenus } from "../components/AllMenuContext"
-import { AppProvider } from "../context/AppProvider"
 
 const Home = () => {
   return (
-    <AppProvider>
         <div>         
             <Hero />
             <AllMenus>
@@ -15,7 +13,6 @@ const Home = () => {
                  <FilteredDishes /> 
             </AllMenus>
         </div>
-    </AppProvider>
   )
 }
 

@@ -31,6 +31,10 @@
   justify-content: space-between;
   padding: 10px 30px;
   align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%;
 }
 .header-section nav h2{
   font-size: 30px;
@@ -47,10 +51,14 @@
   font-weight: bold;
   cursor: pointer;
 }
+.nav-items ul li ul.dropdown li{
+  display: block;
+}
 
 /* Hero section */
 .hero-container{
   height: 65vh;
+  margin-top: 80px;
 }
 .hero-container img{
   height: 100%;
@@ -448,7 +456,7 @@
   position: fixed;
   width: 160px;
   right: 0;
-  top: 25%;
+  top: 10%;
   background: #fff;
   padding: 1px;
   margin-right: 5px;
@@ -460,9 +468,10 @@
   box-shadow: 2px 2px 12px rgb(154 103 37);
   overflow-y: scroll;
   overflow-x: hidden;
-  max-height: 60vh;
+  height: 100vh;
   scroll-behavior: smooth;
   cursor: pointer;
+  z-index: 2;
 }
 .addto-cart-container img{
   width: 136px;
@@ -472,4 +481,40 @@
   margin: 7px 0;
   padding: 6px 4px;
   padding-left: 19px;
+}
+
+/* Add to Cart designs */
+
+.quantity-container {
+  background: #e7e7e7;
+  width: 74px;
+  padding: 2px;
+  border: 1px solid;
+  border-radius: 8px;
+  position: relative;
+  margin: 5px 0;
+}
+.quantity-container h1{
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding-left: 15px;
+}
+.quantity-container span svg{
+  font-size: 20px;
+}
+.quantity-items{
+  list-style: none;
+  background: white;
+  width: 72px;
+  position: absolute;
+  border: 1px solid;
+  border-radius: 5px;
+  z-index: 2;
+}
+.quantity-items li{
+  padding: 5px 0;
+}
+.quantity-items li:hover{
+  background-color: #e7e7e7;
 }
