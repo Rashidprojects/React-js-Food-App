@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&family=Poppins:ital,wght@0,0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,500;1,500&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 * {
   margin: 0;
@@ -6,6 +7,11 @@
   box-sizing: border-box;
   font-family: 'Montserrat Alternates', sans-serif;
   font-size: 16px;
+}
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .loading-container{
@@ -57,35 +63,63 @@
 
 /* Hero section */
 .hero-container{
-  height: 65vh;
+  height: 75vh;
   margin-top: 80px;
 }
 .hero-container img{
   height: 100%;
   width: 100%;
-  object-fit: cover;
   position: relative;
 }
 .text-content{
   position: absolute;
   top: 26%;
-  right: 243px;
-  color: #fff;
+  left: 243px;
 }
 .text-content h1{
-  width: 400px;
-  font-size: 40px;
+  width: 500px;
+  font-size: 48px;
+}
+.text-content p {
+  font-size: 31px;
+  color: #f57342;
 }
 .text-content button{
   width: 115px;
   height: 36px;
   border: none;
   border-radius: 6px;
-  background: #c58c36;
+  background: #f99a11;
   font-size: 17px;
   font-weight: 500;
   color: #fff;
   margin-top: 7px;
+}
+.overview-container {
+  display: flex;
+  margin-top: 27px;
+}
+.overview-container div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: whitesmoke;
+  border-radius: 7px;
+  padding: 18px 12px;
+  margin: 0 5px;
+  width: 138px;
+}
+.overview-container svg{
+  font-size: 54px;
+  background: #ffc616;
+  border-radius: 50%;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.overview-container p{
+  color: black;
+  font-size: 16px;
+  margin: 1px 0;
 }
 
 /* Special Dishes Component */
