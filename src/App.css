@@ -472,6 +472,7 @@
   scroll-behavior: smooth;
   cursor: pointer;
   z-index: 2;
+  padding-bottom: 100px;
 }
 .addto-cart-container img{
   width: 136px;
@@ -493,6 +494,8 @@
   border-radius: 8px;
   position: relative;
   margin: 5px 0;
+  box-shadow:3px 4px 3px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.4);
+
 }
 .quantity-container h1{
   display: flex;
@@ -517,4 +520,13 @@
 }
 .quantity-items li:hover{
   background-color: #e7e7e7;
+}
+.itemCount-manage {
+  display: flex;
+  justify-content: space-around;
+}
+.itemCount-manage .remove-icon{
+  font-size: 21px;
+  margin-top: 10px;
+  color: red;
 }

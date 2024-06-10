@@ -29,6 +29,13 @@ const AppProvider = ({children}) => {
                         item.id === action.payload.id ? { ...item, quantity: action.payload.quantity } : item
                     )
                 }
+            case 'remove_from_cart':
+                return {
+                    ...state,
+                    cartItems : state.cartItems.filter(item => 
+                        item.id !== action.payload.id
+                    )
+                }
             default:
                 return state
         }

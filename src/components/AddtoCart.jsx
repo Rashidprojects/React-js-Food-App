@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useCart } from '../context/AppProvider'
 import QuantitySelector from './QuantitySelector';
+import { RiDeleteBin6Line } from "react-icons/ri";
+
 
 const AddtoCart = () => {
 
      
-    const { state } = useCart() 
+    const { state,dispatch } = useCart() 
 
     const [cartSidebar,setCartSidebar] = useState(false)
     const cartLength = state.cartItems.length;
@@ -18,6 +20,10 @@ const AddtoCart = () => {
       }
     },[cartLength])
 
+    const removeItem = (id) => {
+      dispatch({ type:'remove_from_cart', payload: {id} })
+    }
+
 
 
     let cartItem = cartSidebar ? state.cartItems.map((item) => {
@@ -27,7 +33,10 @@ const AddtoCart = () => {
           <div>
               <h3>{item.title}</h3>
           </div> 
-          <QuantitySelector itemId = {item.id} currentQuantity = {item.quantity} />             
+          <div className='itemCount-manage'>
+            <QuantitySelector itemId = {item.id} currentQuantity = {item.quantity} />   
+            <RiDeleteBin6Line className='remove-icon'  onClick={()=> removeItem(item.id)}/>          
+          </div>
         </div>
             )
         
