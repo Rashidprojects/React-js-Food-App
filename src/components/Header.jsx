@@ -1,46 +1,69 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { FirebaseContext } from '../context/FirebaseContext'
+import { useFirebase } from '../context/FirebaseContext'
 import { onAuthStateChanged } from 'firebase/auth'
+import logo from '../images/logo.png'
+import { GoSearch } from "react-icons/go";
+import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from '../context/AppProvider'
+
+
 
 function Header() {
-  const [username,setUsername] = useState('')
-  const {auth} = useContext(FirebaseContext)
+
+  const {auth,state,dispatch} = useFirebase()
+  const { totalCart } = useCart()
+
 
   useEffect(()=> {
+    dispatch({type:'set_loading'})
     const unsubscribe = onAuthStateChanged(auth,(user) => {
       if(user) {
-        setUsername(user.displayName)
+        dispatch({type:'set_user', payload: {username: user.displayName}});
       } else {
-        setUsername('sign in')
+        dispatch({type:'sign_out'})
       }
 
-      return () =>unsubscribe();
+    })
+    return () =>unsubscribe();
+  },[auth,dispatch])
 
-    },[auth])
-  })
+console.log("user status is ",state.userStatus);
+
   return (
     <div className='header-section'>
       <nav>
         <div className="logo">
-            <h2>Logo</h2>
+            <img src={logo} alt="" />
+            <ul>
+                <li><Link to="/" className='nav-li-item'>Home</Link></li>
+                <li><Link to="checkout" className='nav-li-item'>Checkout</Link></li>
+                <li><Link to="contact" className='nav-li-item'>Contact</Link></li>
+            </ul>
         </div>
         <div className='nav-items'>
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="checkout">Checkout</Link></li>
-                <li><Link to="contact">Contact</Link></li>
-                <li>
-                  <div>
-                    <p>Hello, {username}</p>
-                    <h4>Account</h4>
-                  </div>
-
-                    <ul>
-                      <li>Hello</li>
-                      <li>Sample</li>
-                    </ul>
+                <li className='search-bar'>
+                  <input type="text" placeholder='Search Food Items....' />
+                  <span><GoSearch /></span>
                 </li>
+                <li>
+                  <span className='cart-logo'><FaShoppingCart />
+                      {totalCart !== 0 ? (
+                        <span className='cart-count'>{totalCart}</span>
+                      ): null}
+                      
+                  </span>
+                </li>
+                { state.loading ? (<div className='loading'>Loading name</div>) :
+                  state.userStatus ? (
+                  <li className='user'>
+                   Hello, {state.username}               
+                </li>
+                ) : <li>
+                  <div className='signin-button'>Sign in</div>
+                </li>}
+                
             </ul>
         </div>
       </nav>

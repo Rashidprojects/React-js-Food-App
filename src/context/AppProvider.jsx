@@ -2,7 +2,9 @@ import React, { createContext, useContext, useReducer } from 'react'
 
 const CartContext = createContext()
 
+
 const AppProvider = ({children}) => {
+
 
     const initialState = {
         cartItems : []
@@ -42,11 +44,14 @@ const AppProvider = ({children}) => {
     }
 
     const [state,dispatch] = useReducer(reducer,initialState)
-    console.log("Dispatch Recieved",state);
+    const count = state.cartItems.map(item => item.quantity)
+    const totalCart = count.reduce((accumulator,currentValue) => accumulator + currentValue , 0)
+
+
 
 
   return (
-    <CartContext.Provider value={{state,dispatch}}>
+    <CartContext.Provider value={{state,dispatch,totalCart}}>
         {children}
     </CartContext.Provider>
   )
@@ -54,4 +59,6 @@ const AppProvider = ({children}) => {
 
 export { AppProvider }
 
+
+// export const sample = () => <h1>hello Rashid</h1>
 export const useCart = () => useContext(CartContext)
