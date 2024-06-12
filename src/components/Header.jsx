@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useFirebase } from '../context/FirebaseContext'
 import { onAuthStateChanged } from 'firebase/auth'
 import logo from '../images/logo.png'
@@ -36,9 +36,18 @@ console.log("user status is ",state.userStatus);
         <div className="logo">
             <img src={logo} alt="" />
             <ul>
-                <li><Link to="/" className='nav-li-item'>Home</Link></li>
-                <li><Link to="checkout" className='nav-li-item'>Checkout</Link></li>
-                <li><Link to="contact" className='nav-li-item'>Contact</Link></li>
+                <li><NavLink 
+                  to="/" 
+                  className={({ isActive }) => isActive ? 'nav-li-item active' : 'nav-li-item'}
+                >Home</NavLink></li>
+                <li><NavLink
+                   to="checkout" 
+                  className={({ isActive }) => isActive ? 'nav-li-item active' : 'nav-li-item'}
+                >Checkout</NavLink></li>
+                <li><NavLink 
+                  to="contact" 
+                  className={({ isActive }) => isActive ? 'nav-li-item active' : 'nav-li-item'}
+                >Contact</NavLink></li>
             </ul>
         </div>
         <div className='nav-items'>

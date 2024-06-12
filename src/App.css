@@ -118,6 +118,10 @@ p {
   color: black;
   font-weight: 500;
 }
+.nav-li-item.active {
+  font-weight: bold;
+  font-size: 19px;
+}
 .nav-items .user {
   margin-top: 4px;
 }
