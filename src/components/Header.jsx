@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useFirebase } from '../context/FirebaseContext'
-import { onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
 import logo from '../images/logo.png'
 import { GoSearch } from "react-icons/go";
 import { FaShoppingCart } from "react-icons/fa";
@@ -27,6 +27,15 @@ function Header() {
     })
     return () =>unsubscribe();
   },[auth,dispatch])
+
+  const handleSignout = async () => {
+    try {
+      await signOut(auth);
+      console.log("user signout");
+    } catch (error) {
+      console.error ("Error sign out",error)
+    }
+  }
 
 console.log("user status is ",state.userStatus);
 
@@ -66,11 +75,21 @@ console.log("user status is ",state.userStatus);
                 </li>
                 { state.loading ? (<div className='loading'>Loading name</div>) :
                   state.userStatus ? (
+                    <>
                   <li className='user'>
                    Hello, {state.username}               
                 </li>
+                <button onClick={handleSignout}>Signout</button>
+                </>
                 ) : <li>
-                  <div className='signin-button'>Sign in</div>
+                  
+                <NavLink to= "login"
+                  className = {({ isActive }) => isActive ? 'link-none' : 'link'}
+                >
+                  <div className='signin-button'>
+                    Sign in
+                  </div>
+                </NavLink>
                 </li>}
                 
             </ul>

@@ -130,6 +130,13 @@ p {
   padding: 8px;
   border-radius: 7px;
 }
+.nav-items .link {
+  text-decoration: none;
+  color: black;
+}
+.nav-items .link-none {
+  display: none;
+}
 
 
 /* Hero section */
@@ -334,7 +341,6 @@ p {
   box-shadow: inset 6px -12px 32px -10px rgba(0, 0, 0, 0.5);
   padding-bottom: 26px;
   border-radius: 7px;
-  width: 250px;
 }
 
 .image-container img {
